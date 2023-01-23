@@ -11,6 +11,6 @@ wss.on('connection', startControl);
 wss.on('close', () => {
   console.log('disconnected');
 });
-wss.on('error ', () => {
-  console.log('error ');
+wss.on('error ', (error) => {
+  console.log('error ', error);
 });

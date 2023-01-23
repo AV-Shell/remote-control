@@ -6,7 +6,7 @@
     "scripts": {
         "start": "nodemon src/server.ts",
         "start:dev": "nodemon src/server.ts",
-        "start:prod": "webpack && node ./dist/bundle.js",
+        "start:prod": "ts-node src/server.ts",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Andrei Auchynnikau",
@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "@nut-tree/nut-js": "^2.3.0",
+        "jimp": "^0.16.2",
         "ws": "^8.12.0"
     },
     "devDependencies": {

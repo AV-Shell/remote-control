@@ -1,6 +1,7 @@
 import { WebSocket, createWebSocketStream } from 'ws';
 import { mouseUp, mouseDown, mouseLeft, mouseRight, mouseCircle, mouseGetPosition, rectangle } from './mouse';
-// import { takeScreenshot } from './screen';
+import { takeScreenshot } from './screen';
+// import { Duplex } from 'stream';
 
 export const startControl = (ws: WebSocket): void => {
   console.log('Ws connetded:', !ws.isPaused);
@@ -10,6 +11,7 @@ export const startControl = (ws: WebSocket): void => {
   });
 
   let position;
+  let buf;
 
   ioStream.on('data', async (message) => {
     try {
@@ -43,9 +45,11 @@ export const startControl = (ws: WebSocket): void => {
           await rectangle(+(data[0] ?? 0), +(data[0] ?? 0));
           break;
         case 'prnt_scrn':
-          console.log('prnt_scrn');
-          // takeScreenshot(ioStream);
+          buf = await takeScreenshot();
 
+          if (buf) {
+            ioStream.write(`prnt_scrn  ${buf.toString('base64')}`);
+          }
           break;
 
         default:
@@ -54,10 +58,9 @@ export const startControl = (ws: WebSocket): void => {
     } catch (error) {
       console.log('error: ', error);
     }
-    // ioStream.write(`${command}`);
   });
 
-  // ws.on('message', function message(data) {
-  //   console.log('received: %s', data);
-  // });
+  ioStream.on('error', (err) => {
+    console.log(err);
+  });
 };
