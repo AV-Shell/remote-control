@@ -1,7 +1,6 @@
 import { WebSocket, createWebSocketStream } from 'ws';
 import { mouseUp, mouseDown, mouseLeft, mouseRight, mouseCircle, mouseGetPosition, rectangle } from './mouse';
 import { takeScreenshot } from './screen';
-// import { Duplex } from 'stream';
 
 export const startControl = (ws: WebSocket): void => {
   console.log('Ws connetded:', !ws.isPaused);

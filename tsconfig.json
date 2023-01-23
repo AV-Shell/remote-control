@@ -9,7 +9,7 @@
     "downlevelIteration": false,
     "strict": true,
     "noUnusedLocals": true,
-    // "noUnusedParameters": true,
+    "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noImplicitAny": true,
     "alwaysStrict": true,

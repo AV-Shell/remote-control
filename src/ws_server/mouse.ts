@@ -46,7 +46,6 @@ export const mouseCircle = async (radius: number) => {
     }
     points.push({ ...cursorPos });
 
-    // console.log(points);
     await mouse.pressButton(Button.LEFT);
     // await mouse.move(points);
     if (points.length > 0) {
@@ -56,7 +55,6 @@ export const mouseCircle = async (radius: number) => {
           // await mouse.move(await straightTo(target));
           await mouse.move(straightTo(target));
           // const data = await straightTo(target);
-          // points2.push(...data);
         }
       }
     }
